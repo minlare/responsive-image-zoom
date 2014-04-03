@@ -20,17 +20,14 @@ Include script *after* **jQuery** and **jquery.hammer.js**
 
 ## Usage
 
-### Basic
+### HTML
 
 ```html
 <div class="element">
     <img src="/path/to/image.jpg" alt="Image">
 </div>
-```
 
-### LazyLoading
-
-```html
+// Lazy loading can be activated by attaching a data-url attribute to the image
 <div class="element">
     <img data-url="/path/to/image.jpg" src="/path/to/image.jpg" alt="Image">
 </div>
