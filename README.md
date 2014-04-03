@@ -20,11 +20,19 @@ Include script *after* **jQuery** and **jquery.hammer.js**
 
 ## Usage
 
-### HTML
+### Basic
 
 ```html
 <div class="element">
     <img src="/path/to/image.jpg" alt="Image">
+</div>
+```
+
+### LazyLoading
+
+```html
+<div class="element">
+    <img data-url="/path/to/image.jpg" src="/path/to/image.jpg" alt="Image">
 </div>
 ```
 
