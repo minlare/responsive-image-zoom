@@ -4,16 +4,17 @@
 
         var $config = {
             event: 'doubletap',
-            showMessage: false,
+            showMessage: true,
             message: 'Tap twice to zoom'
         };
         $.extend($config, config);
+        
+        $(this).wrapInner($('<div/>', {class: 'responsive-image-zoom-wrapper'}));
 
         $(this).each(function(){
-
-            var $el = $(this),
+            
+            var $el = $(this).find('.responsive-image-zoom-wrapper'),
                 $img,
-                $message,
                 $offset,
                 $dimensions = {},
                 $max = {},
@@ -44,8 +45,7 @@
             
             // Enlarge image for zooming
             var imageZoomed = function(){
-                if($message)
-                    $message.remove();
+                $('.responsive-image-zoom-message').remove();
                 
                 $img.css({
                     maxWidth: 'none',
@@ -151,7 +151,7 @@
                     
                     getContainerData();
                     
-                    $message = $('<span/>', {class: 'responsive-image-zoom-message'}).css({
+                    var $message = $('<span/>', {class: 'responsive-image-zoom-message'}).css({
                         background: 'rgba(0,0,0,0.5)',
                         position: 'absolute',
                         padding: '.5em',
