@@ -3,14 +3,16 @@ responsive-image-zoom.js
 
 jQuery plugin for ResponsiveImageZoom
 
-## Dependencies
+## Development
 
-[jQuery](http://jquery.com/)
-[jquery.hammer.js](https://github.com/EightMedia/jquery.hammer.js)
+### Requires
 
-## Installation
+* [jQuery](http://jquery.com/)
+* [jquery.hammer.js](https://github.com/EightMedia/jquery.hammer.js)
 
-Include script *after* jQuery and jquery.hammer.js
+### Installation
+
+Include script *after* **jQuery** and **jquery.hammer.js**
 
 ## Usage
 
