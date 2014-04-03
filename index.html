@@ -4,16 +4,35 @@
         <title>Responsive Image Zoom</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width">
-        <link rel="stylesheet" href="style.css">
+        <style type="text/css">
+            .responsive-image-zoom{
+                border: 1px solid #CCC;
+                max-width: 500px;
+                width: 100%;
+            }
+            .responsive-image-zoom img{
+                max-width: 100%;
+                display: block;
+            }
+            .responsive-image-zoom *{
+                -webkit-user-drag: none;
+                -webkit-user-select: none;
+            }
+        </style>
     </head>
     <body>
-        <div class="responsiveImageZoom">
-            <img src="images/image3.jpg" alt="Image">
+        <div class="responsive-image-zoom">
+            <img src="images/image1.jpg" alt="Image">
         </div>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <br/>
+        <div class="responsive-image-zoom">
+            <img src="images/image2.jpg" alt="Image">
+        </div>
+        <script src="js/jquery-2.1.0.min.js"></script>
+        <script src="js/jquery.hammer-full.min.js"></script>
         <script src="responsive-image-zoom.js"></script>
         <script>
-            $('.responsiveImageZoom').responsiveImageZoom();
+            $('.responsive-image-zoom').responsiveImageZoom();
         </script>
     </body>
 </html>
