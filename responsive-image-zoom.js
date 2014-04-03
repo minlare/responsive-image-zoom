@@ -15,6 +15,41 @@
                 $dimensions = {},
                 $max = {},
                 $dragStart = {};
+                
+            // Return image back to original state
+            var imageNatural = function(){
+                $img.css({
+                    maxWidth: '',
+                    width: '',
+                    position: '',
+                    display: '',
+                    left: '',
+                    top: ''
+                });
+                $img.data('zoomed', false);
+                $img.removeClass('responsive-image-zoom-active');
+                $img = false;
+            };
+            
+            // Enlarge image for zooming
+            var imageZoomed = function(){
+                $img.css({
+                    maxWidth: 'none',
+                    width: 'auto',
+                    position: 'absolute',
+                    display: 'block'
+                }).css({
+                    left: -($img.width() - $dimensions.width) / 2,
+                    top: -($img.height() - $dimensions.height) / 2
+                });
+                $img.data('zoomed', true);
+                $img.addClass('responsive-image-zoom-active');
+
+                $max = {
+                    left: parseInt(-($img.width() - $dimensions.width)),
+                    top: parseInt(-($img.height() - $dimensions.height))
+                };
+            };
 
             var zoomImage = function(e){
 
@@ -25,25 +60,8 @@
                 };
 
                 $img = $(e.target);
-                if($img.data('zoomed')){
-                    
-                    if($img.hasClass('responsive-image-zoom-lazyload')){
-                        $img.css('display', 'none');
-                    }
-
-                    // Return image back to original state
-                    $img.css({
-                        maxWidth: '',
-                        width: '',
-                        position: '',
-                        display: '',
-                        left: '',
-                        top: ''
-                    });
-                    $img.data('zoomed', false);
-                    $img.removeClass('responsive-image-zoom-active');
-                    $img = false;
-                }
+                if($img.data('zoomed'))
+                    imageNatural();
                 else{
 
                     // Set element dimensions so zooming is only shown inside original box
@@ -54,39 +72,19 @@
                         width: $dimensions.width
                     });
 
-                    var enlargeImage = function(){
-
-                        $img.css({
-                            maxWidth: 'none',
-                            width: 'auto',
-                            position: 'absolute',
-                            display: 'block'
-                        }).css({
-                            left: -($img.width() - $dimensions.width) / 2,
-                            top: -($img.height() - $dimensions.height) / 2
-                        });
-                        $img.data('zoomed', true);
-                        $img.addClass('responsive-image-zoom-active');
-
-                        $max = {
-                            left: parseInt(-($img.width() - $dimensions.width)),
-                            top: parseInt(-($img.height() - $dimensions.height))
-                        };
-                    };
-                    
                     if(!$img.data('url'))
-                        enlargeImage();
+                        imageZoomed();
                     else 
                         // handle lazy loading
                         if($img.next('.responsive-image-zoom-lazyload').length > 0){
                             $img = $img.next('.responsive-image-zoom-lazyload');
-                            enlargeImage();
+                            imageZoomed();
                         }
                         else{
                             $img = $('<img/>', {src: $img.data('url'), class: 'responsive-image-zoom-lazyload'});
                             $img.on('load', function(){
                                 $el.append($img);
-                                enlargeImage();
+                                imageZoomed();
                             });
                         }
                 }
@@ -123,6 +121,18 @@
                     top: Math.max($max.top, Math.min(0, e.gesture.deltaY + $dragStart.top))
                 });
             };
+            
+            var resetZoom = function(e){
+                $el.css({
+                    position: '',
+                    overflow: '',
+                    height: '',
+                    width: ''
+                });
+                
+                if($img && $img.data('zoomed'))
+                    imageNatural();
+            };
 
             // All Devices
             $(this).hammer().on($config.event, zoomImage);
@@ -137,7 +147,9 @@
                 if($img && $img.data('zoomed') && $(e.target).hasClass('responsive-image-zoom-active'))
                     e.preventDefault();
             });
-
+            
+            // Reset on window resize
+            $(window).on('resize', resetZoom);
         });
     };
 
