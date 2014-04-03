@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Responsive Image Zoom - LazyLoad</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <style type="text/css">
+            .responsive-image-zoom{
+                border: 1px solid #CCC;
+                max-width: 800px;
+                width: 100%;
+            }
+            .responsive-image-zoom img{
+                max-width: 100%;
+                display: block;
+            }
+            .responsive-image-zoom *{
+                -webkit-user-drag: none;
+                -webkit-user-select: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="responsive-image-zoom">
+            <img data-url="http://cdn.fansided.com/wp-content/blogs.dir/229/files/2013/05/gameot.jpg" 
+                 src="http://cdn.fansided.com/wp-content/blogs.dir/229/files/2013/05/gameot.jpg" 
+                 alt="Image">
+        </div>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+        <script src="jquery.hammer.js"></script>
+        <script src="../responsive-image-zoom.js"></script>
+        <script>
+            $('.responsive-image-zoom').responsiveImageZoom();
+        </script>
+    </body>
+</html>

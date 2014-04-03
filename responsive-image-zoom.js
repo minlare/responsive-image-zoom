@@ -26,6 +26,10 @@
 
                 $img = $(e.target);
                 if($img.data('zoomed')){
+                    
+                    if($img.hasClass('responsive-image-zoom-lazyload')){
+                        $img.css('display', 'none');
+                    }
 
                     // Return image back to original state
                     $img.css({
@@ -48,20 +52,40 @@
                         width: $dimensions.width
                     });
 
-                    $img.css({
-                        maxWidth: 'none',
-                        position: 'absolute'
-                    }).css({
-                        left: -($img.width() - $dimensions.width) / 2,
-                        top: -($img.height() - $dimensions.height) / 2
-                    });
-                    $img.data('zoomed', true);
-                    $img.addClass('responsive-image-zoom-active');
+                    var enlargeImage = function(){
 
-                    $max = {
-                        left: parseInt(-($img.width() - $dimensions.width)),
-                        top: parseInt(-($img.height() - $dimensions.height))
+                        $img.css({
+                            maxWidth: 'none',
+                            position: 'absolute',
+                            display: 'block'
+                        }).css({
+                            left: -($img.width() - $dimensions.width) / 2,
+                            top: -($img.height() - $dimensions.height) / 2
+                        });
+                        $img.data('zoomed', true);
+                        $img.addClass('responsive-image-zoom-active');
+
+                        $max = {
+                            left: parseInt(-($img.width() - $dimensions.width)),
+                            top: parseInt(-($img.height() - $dimensions.height))
+                        };
                     };
+                    
+                    if(!$img.data('url'))
+                        enlargeImage();
+                    else 
+                        // handle lazy loading
+                        if($img.next('.responsive-image-zoom-lazyload').length > 0){
+                            $img = $img.next('.responsive-image-zoom-lazyload');
+                            enlargeImage();
+                        }
+                        else{
+                            $img = $('<img/>', {src: $img.data('url'), class: 'responsive-image-zoom-lazyload'});
+                            $img.on('load', function(){
+                                $el.append($img);
+                                enlargeImage();
+                            });
+                        }
                 }
             };
 
@@ -98,7 +122,7 @@
             };
 
             // All Devices
-            $(this).find('img').hammer().on($config.event, zoomImage);
+            $(this).hammer().on($config.event, zoomImage);
 
             // Desktop
             $(this).on('mousemove', moveZoomArea);
