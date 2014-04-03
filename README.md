@@ -57,5 +57,9 @@ $('.element').responsiveImageZoom(config);
 Configuration options can be passed to the function as shown above
 
 #### event
+
+Controls the event on which we enlarge the image and begin the zoom functionality. Can be any event (including hammerjs events)
+
+default: **doubletap**
     
     event: 'mouseover mouseout'
