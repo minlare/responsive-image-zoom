@@ -33,10 +33,12 @@
 
                     // Return image back to original state
                     $img.css({
-                        maxWidth: '100%',
-                        position: 'static',
-                        top: 'auto',
-                        left: 'auto'
+                        maxWidth: '',
+                        width: '',
+                        position: '',
+                        display: '',
+                        left: '',
+                        top: ''
                     });
                     $img.data('zoomed', false);
                     $img.removeClass('responsive-image-zoom-active');
@@ -56,6 +58,7 @@
 
                         $img.css({
                             maxWidth: 'none',
+                            width: 'auto',
                             position: 'absolute',
                             display: 'block'
                         }).css({

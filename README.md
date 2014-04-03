@@ -55,6 +55,11 @@ $('.element').responsiveImageZoom(config);
     -webkit-user-drag: none;
     -webkit-user-select: none;
 }
+
+// If lazy loading is activated the lazy loaded image should be hidden when not zoomed
+.responsive-image-zoom-lazyload{
+    display: none;
+}
 ```
 
 ## Configuration
