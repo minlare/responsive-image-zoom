@@ -14,6 +14,10 @@ jQuery plugin for ResponsiveImageZoom
 
 Include script *after* **jQuery** and **jquery.hammer.js**
 
+```html
+<script src="/path/to/responsive-image-zoom.js"></script>
+```
+
 ## Usage
 
 ````js
