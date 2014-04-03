@@ -3,7 +3,9 @@
     $.fn.responsiveImageZoom = function(config){
 
         var $config = {
-            event: 'doubletap'
+            event: 'doubletap',
+            showMessage: false,
+            message: 'Tap twice to zoom'
         };
         $.extend($config, config);
 
@@ -11,10 +13,19 @@
 
             var $el = $(this),
                 $img,
+                $message,
                 $offset,
                 $dimensions = {},
                 $max = {},
                 $dragStart = {};
+                
+            var getContainerData = function(){
+                $offset = $el.offset();
+                $dimensions = {
+                    width: $el.width(),
+                    height: $el.height()
+                };
+            };
                 
             // Return image back to original state
             var imageNatural = function(){
@@ -33,6 +44,9 @@
             
             // Enlarge image for zooming
             var imageZoomed = function(){
+                if($message)
+                    $message.remove();
+                
                 $img.css({
                     maxWidth: 'none',
                     width: 'auto',
@@ -52,14 +66,12 @@
             };
 
             var zoomImage = function(e){
-
-                $offset = $el.offset();
-                $dimensions = {
-                    width: $el.width(),
-                    height: $el.height()
-                };
+                getContainerData();
 
                 $img = $(e.target);
+                if($img.hasClass('responsive-image-zoom-message'))
+                    $img = $img.next('img');
+                
                 if($img.data('zoomed'))
                     imageNatural();
                 else{
@@ -133,6 +145,28 @@
                 if($img && $img.data('zoomed'))
                     imageNatural();
             };
+            
+            if($config.showMessage){
+                $(window).on('load', function(){
+                    
+                    getContainerData();
+                    
+                    $message = $('<span/>', {class: 'responsive-image-zoom-message'}).css({
+                        background: 'rgba(0,0,0,0.5)',
+                        position: 'absolute',
+                        padding: '.5em',
+                        fontSize: '.9em',
+                        color: 'white'
+                    }).html($config.message);
+                    $el.prepend($message);
+
+                    $message.css({
+                        left: (($dimensions.width - $message.width()) / 2),
+                        top: (($dimensions.height - $message.height()) / 2)
+                    });
+                });
+            }
+                
 
             // All Devices
             $(this).hammer().on($config.event, zoomImage);
