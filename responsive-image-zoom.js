@@ -16,8 +16,6 @@ $.fn.responsiveImageZoom = function(config){
             
         var zoomImage = function(e){
             
-            console.log('zoomImage');
-
             $offset = $el.offset();
             $dimensions = {
                 width: $el.width(),

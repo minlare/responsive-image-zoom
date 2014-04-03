@@ -52,7 +52,7 @@ $('.element').responsiveImageZoom(config);
 }
 ```
 
-### Configuration
+## Configuration
 
 Configuration options can be passed to the function as shown above
 
