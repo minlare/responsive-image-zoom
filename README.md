@@ -27,7 +27,7 @@ Include script *after* **jQuery** and **jquery.hammer.js**
     <img src="/path/to/image.jpg" alt="Image">
 </div>
 
-// Lazy loading can be activated by attaching a data-url attribute to the image
+<!-- Lazy loading can be activated by attaching a data-url attribute to the image -->
 <div class="element">
     <img data-url="/path/to/image.jpg" src="/path/to/image.jpg" alt="Image">
 </div>
@@ -56,7 +56,7 @@ $('.element').responsiveImageZoom(config);
     -webkit-user-select: none;
 }
 
-// If lazy loading is activated the lazy loaded image should be hidden when not zoomed
+/* If lazy loading is activated the lazy loaded image should be hidden when not zoomed */
 .responsive-image-zoom-lazyload{
     display: none;
 }
