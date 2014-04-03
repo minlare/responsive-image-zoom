@@ -51,3 +51,11 @@ $('.element').responsiveImageZoom(config);
     -webkit-user-select: none;
 }
 ```
+
+### Configuration
+
+Configuration options can be passed to the function
+
+#### event
+    
+    event: 'mouseover mouseout'
