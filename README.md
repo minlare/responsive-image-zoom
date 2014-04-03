@@ -30,11 +30,13 @@ Include script *after* **jQuery** and **jquery.hammer.js**
 
 ### Javascript
 
-````js
+```js
 $('.element').responsiveImageZoom();
-````
+```
 
 ### CSS
+
+```css
 .element{
     max-width: 500px;
     width: 100%;
@@ -47,3 +49,4 @@ $('.element').responsiveImageZoom();
     -webkit-user-drag: none;
     -webkit-user-select: none;
 }
+```
