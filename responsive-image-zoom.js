@@ -1,4 +1,9 @@
-$.fn.responsiveImageZoom = function(){
+$.fn.responsiveImageZoom = function(config){
+    
+    var $config = {
+        event: 'doubletap'
+    };
+    $.extend($config, config);
     
     $(this).each(function(){
 
@@ -8,8 +13,10 @@ $.fn.responsiveImageZoom = function(){
             $dimensions = {},
             $max = {},
             $dragStart = {};
-
+            
         var zoomImage = function(e){
+            
+            console.log('zoomImage');
 
             $offset = $el.offset();
             $dimensions = {
@@ -91,8 +98,7 @@ $.fn.responsiveImageZoom = function(){
         };
 
         // All Devices
-        var $images = $(this).find('img');
-        $images.hammer().on('doubletap', zoomImage);
+        $(this).find('img').hammer().on($config.event, zoomImage);
 
         // Desktop
         $(this).on('mousemove', moveZoomArea);

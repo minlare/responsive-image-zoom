@@ -31,7 +31,8 @@ Include script *after* **jQuery** and **jquery.hammer.js**
 ### Javascript
 
 ```js
-$('.element').responsiveImageZoom();
+var config = {};
+$('.element').responsiveImageZoom(config);
 ```
 
 ### CSS
