@@ -54,7 +54,7 @@ $('.element').responsiveImageZoom(config);
 
 ### Configuration
 
-Configuration options can be passed to the function
+Configuration options can be passed to the function as shown above
 
 #### event
     
