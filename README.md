@@ -20,6 +20,30 @@ Include script *after* **jQuery** and **jquery.hammer.js**
 
 ## Usage
 
+### HTML
+
+```html
+<div class="element">
+    <img src="/path/to/image.jpg" alt="Image">
+</div>
+```
+
+### Javascript
+
 ````js
-$('#element').responsiveImageZoom();
+$('.element').responsiveImageZoom();
 ````
+
+### CSS
+.element{
+    max-width: 500px;
+    width: 100%;
+}
+.element img{
+    max-width: 100%;
+    display: block;
+}
+.element *{
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+}
