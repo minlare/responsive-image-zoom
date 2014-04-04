@@ -70,6 +70,18 @@ Configuration options can be passed to the function as shown above
 
 Controls the event on which we enlarge the image and begin the zoom functionality. Can be any event (including hammerjs events)
 
-default: **doubletap**
+Default: **doubletap**
     
+```js
     event: 'mouseover mouseout'
+```
+
+#### clickOutsideResetZoom
+
+Resets the zoom when mouse click is observed outside of zoom container
+
+Default: **true**
+
+```js
+    clickOutsideResetZoom: true|false
+```

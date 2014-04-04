@@ -4,12 +4,14 @@
 
         var $config = {
             event: 'doubletap',
+            clickOutsideResetZoom: true,
             showMessage: true,
             message: 'Tap twice to zoom'
         };
         $.extend($config, config);
         
         $(this).wrapInner($('<div/>', {class: 'responsive-image-zoom-wrapper'}));
+        $(this).find('img').addClass('responsive-image-zoom-image');
 
         $(this).each(function(){
             
@@ -146,28 +148,6 @@
                     imageNatural();
             };
             
-            if($config.showMessage){
-                $(window).on('load', function(){
-                    
-                    getContainerData();
-                    
-                    var $message = $('<span/>', {class: 'responsive-image-zoom-message'}).css({
-                        background: 'rgba(0,0,0,0.5)',
-                        position: 'absolute',
-                        padding: '.5em',
-                        fontSize: '.9em',
-                        color: 'white'
-                    }).html($config.message);
-                    $el.prepend($message);
-
-                    $message.css({
-                        left: (($dimensions.width - $message.width()) / 2),
-                        top: (($dimensions.height - $message.height()) / 2)
-                    });
-                });
-            }
-                
-
             // All Devices
             $(this).hammer().on($config.event, zoomImage);
 
@@ -184,6 +164,32 @@
             
             // Reset on window resize
             $(window).on('resize', resetZoom);
+            
+            // Show message
+            if($config.showMessage){
+                $(window).on('load', function(){
+                    getContainerData();
+                    var $message = $('<span/>', {class: 'responsive-image-zoom-message'}).css({
+                        background: 'rgba(0,0,0,0.5)',
+                        position: 'absolute',
+                        padding: '.5em',
+                        fontSize: '.9em',
+                        color: 'white'
+                    }).html($config.message);
+                    $el.prepend($message);
+                    $message.css({
+                        left: (($dimensions.width - $message.width()) / 2),
+                        top: (($dimensions.height - $message.height()) / 2)
+                    });
+                });
+            }
+            
+            // Handle close on click outside
+            if($config.clickOutsideResetZoom)
+                $(document).on('click', function(e){
+                    if($img && !$(e.target).hasClass('responsive-image-zoom-image'))
+                        resetZoom();
+                });
         });
     };
 
