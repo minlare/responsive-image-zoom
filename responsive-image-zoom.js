@@ -188,7 +188,7 @@
             // Handle close on click outside
             if($config.resetZoomClickOutside)
                 $(document).on('click', function(e){
-                    if($img && $img.data('zoomed') && !$(e.target).hasClass('responsive-image-zoom-image'))
+                    if($img && $img.data('zoomed') && !$(e.target).hasClass('responsive-image-zoom-image') && !$(e.target).hasClass('responsive-image-zoom-lazyload'))
                         resetZoom();
                 });
             
