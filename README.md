@@ -76,6 +76,26 @@ Default: **doubletap**
     event: 'mouseover mouseout'
 ```
 
+#### showMessage
+
+Determines whether a message is shown in the centre of the image
+
+Default: **true**
+
+```js
+    showMessage: true|false
+```
+
+#### message
+
+String defining the message to be shown in the centre of the image if showMessage is set to true
+
+Default: **Tap twice to zoom**
+
+```js
+    message: 'A custom message to be shown'
+```
+
 #### resetZoomClickOutside
 
 Resets the zoom when mouse click is observed outside of zoom container
