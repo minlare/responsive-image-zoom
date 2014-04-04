@@ -76,12 +76,22 @@ Default: **doubletap**
     event: 'mouseover mouseout'
 ```
 
-#### clickOutsideResetZoom
+#### resetZoomClickOutside
 
 Resets the zoom when mouse click is observed outside of zoom container
 
 Default: **true**
 
 ```js
-    clickOutsideResetZoom: true|false
+    resetZoomClickOutside: true|false
+```
+
+#### resetZoomMouseExit
+
+Resets the zoom when mouse exits the zoom container
+
+Default: **true**
+
+```js
+    resetZoomMouseExit: true|false
 ```

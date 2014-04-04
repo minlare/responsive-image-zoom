@@ -4,7 +4,8 @@
 
         var $config = {
             event: 'doubletap',
-            clickOutsideResetZoom: true,
+            resetZoomClickOutside: true,
+            resetZoomMouseExit: true,
             showMessage: true,
             message: 'Tap twice to zoom'
         };
@@ -185,9 +186,16 @@
             }
             
             // Handle close on click outside
-            if($config.clickOutsideResetZoom)
+            if($config.resetZoomClickOutside)
                 $(document).on('click', function(e){
-                    if($img && !$(e.target).hasClass('responsive-image-zoom-image'))
+                    if($img && $img.data('zoomed') && !$(e.target).hasClass('responsive-image-zoom-image'))
+                        resetZoom();
+                });
+            
+            // Handle close on mouse exit
+            if($config.resetZoomMouseExit)
+                $(this).on('mouseout', function(e){
+                    if($img && $img.data('zoomed'))
                         resetZoom();
                 });
         });
