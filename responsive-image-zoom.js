@@ -194,8 +194,8 @@
             
             // Handle close on mouse exit
             if($config.resetZoomMouseExit)
-                $(this).on('mouseout', function(e){
-                    if($img && $img.data('zoomed'))
+                $el.on('mouseout', function(e){
+                    if($img && $img.data('zoomed') && $(e.target).get(0) === $img.get(0))
                         resetZoom();
                 });
         });
